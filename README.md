@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShipBee Campaign — landing page
 
-## Getting Started
-
-First, run the development server:
+Next.js (App Router) + Tailwind CSS v4 build of the **ShipBee Campaign** Figma page
+(`Frame 2147225722`, 1512 × 7306): "Shop Worldwide. We'll Deliver the Rest."
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Section (top → bottom)            | Component                              |
+| --------------------------------- | -------------------------------------- |
+| Floating nav bar                  | `src/components/Header.tsx`            |
+| Hero + paste-link / track form    | `Hero.tsx`, `LinkSearch.tsx` (client)  |
+| Stats row                         | `Stats.tsx`                            |
+| Shop from international stores    | `InternationalStores.tsx`              |
+| Global Shopping Made Simple       | `Steps.tsx` (client, auto-cycles)      |
+| Millions of Products (marquee)    | `Categories.tsx`                       |
+| Favorite brands logo wall         | `Brands.tsx`                           |
+| Built for Every Delivery Journey  | `DeliveryJourney.tsx`                  |
+| All over the world (flag marquee) | `AllOverTheWorld.tsx`                  |
+| Final CTA + footer                | `Footer.tsx`                           |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Design tokens (navy `#1E1E4B`, orange `#E85122`, etc.) live in `src/app/globals.css`.
+Fonts (Poppins, Inter, Alexandria) are self-hosted via `@fontsource`.
 
-## Learn More
+## Images
 
-To learn more about Next.js, take a look at the following resources:
+Every image slot is listed in `src/lib/assets.ts` and served from `public/figma/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Icons** come from the same Iconify sets the Figma file uses and are generated
+  into `src/lib/icons.ts` by `npm run icons`.
+- **Round flags** are real (`circle-flags` set), also written by `npm run icons`.
+- **Everything else** (logos, product photos, the container, MacBook, phone, plane,
+  box, cart illustrations, brand logos, category photos) is currently a labelled
+  placeholder made by `npm run placeholders`. To swap one in, export it from Figma
+  and save it at the same path (update the extension in `assets.ts` if it's a PNG).
+  The placeholder script never overwrites a real file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`design-reference/` holds Figma screenshots of each section for visual comparison.
